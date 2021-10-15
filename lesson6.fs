@@ -9,6 +9,8 @@ let rec pow =
 // 17.2
 let rec isIthChar =
     function
+    | (s,n,c) when n < 0 -> false
+    | (s,n,c) when ((String.length s) <= n) -> false
     | (s, n, c) -> (string s).[n] = c
 
 //printfn "%b" (isIthChar ("aaac", 3,'d'))
