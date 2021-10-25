@@ -19,8 +19,8 @@ let rec evenn =
     function
     | 1 -> [0]
     | n when n<1 -> []
-    | n when (n%2=0)-> n::evenn(n-2)
-    | n when (n%2=1)-> evenn(n-1)
+    | n -> evenn(n-1) @ [2*(n-1)]
 
 //let result = evenn 11
 //let a = 1
+
