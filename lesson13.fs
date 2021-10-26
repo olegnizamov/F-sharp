@@ -2,6 +2,7 @@
 let rec rmodd =
     function
     | [] -> []
+    | [x] -> []
     | head :: head2 :: tail -> [ head2 ] @ rmodd tail
 
 //let result = rmodd [0;2;3;6;8;9;5;3]
