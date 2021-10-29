@@ -104,6 +104,11 @@ let rec delete (n, xs) =
 //let a = 1
 
 // 40.3.3. Напишите функцию сортировки с использованием предыдущих функций, которая сортирует входной список так, что на выходе получается слабо восходящий список.
+
+
+
+
+
 let rec sort = fun xs ->
     let rec iteratorSort (list: 'b list) result =
         if(list.Length=0) then result
@@ -117,11 +122,14 @@ let rec sort = fun xs ->
 //let result = sort ([1;2;3;4;5;6;7;1;0])
 //let a = 1
 
-// 40.4. Напишите функцию revrev, которая получает на вход список списков, и перевёртывает как порядок вложенных списков, так и порядок элементов внутри каждого вложенного списка.
-let rec revrev = fun xs ->
-  let rec iter lst acc =
-    let head :: tail = lst
-    if(tail.Length = 0) then (List.rev head)::acc
-    else iter tail ((List.rev head)::acc)
 
-  iter xs []
+
+// 40.4. Напишите функцию revrev, которая получает на вход список списков, и перевёртывает как порядок вложенных списков, так и порядок элементов внутри каждого вложенного списка.
+let rec revrev = fun (xs: list<list<int>>) ->
+   match xs with
+   | [] -> []
+   | [ x ] -> [ List.rev x ]
+   | head :: tail -> revrev tail @ [ List.rev head ]
+
+//let result = revrev ([[1;2];[3;4]])
+//let a = 1
