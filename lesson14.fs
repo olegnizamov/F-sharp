@@ -109,8 +109,8 @@ let rec sort = fun xs ->
         if(list.Length=0) then result
         else
             let min = smallest list
-            let tail = delete(min,list)
-            iteratorSort tail (result @ [min])
+            let tail = delete(min.Value,list)
+            iteratorSort tail (result @ [min.Value])
 
     iteratorSort xs []
 
