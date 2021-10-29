@@ -3,7 +3,7 @@ let rec sum (p, xs) =
     match xs with
     | [] -> 0
     | [ x ] when p x -> x
-    | head :: tail when (p head) -> 1 + sum (p, tail)
+    | head :: tail when (p head) -> head + sum (p, tail)
     | _ :: tail -> 0 + sum (p, tail)
     | _ -> 0
 
