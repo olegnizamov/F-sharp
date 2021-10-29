@@ -31,7 +31,7 @@ let rec insert (xs, n) =
 //let a = 1
 
 
-//40.2.3. Напишите функцию intersect: int list * int list -> int list, которая находит общие элементы в обоих списках, включая повторяющиеся.
+//40.2.3.
 let rec intersect (xs1, xs2) =
     match (xs1, xs2) with
     | (head1 :: tail1, head2 :: tail2) when head1 = head2 -> head1 :: intersect (tail1, tail2)
@@ -45,7 +45,7 @@ let rec intersect (xs1, xs2) =
 //let a = 1
 
 
-// 40.2.4. Напишите функцию plus: int list * int list -> int list, которая формирует список, объединяющий все элементы входных списков, включая повторяющиеся.
+// 40.2.4.
 let rec plus (xs1, xs2) =
     match (xs1, xs2) with
     | (head1 :: tail1, head2 :: _) when head1 < head2 -> [ head1 ] @ plus (tail1, xs2)
@@ -62,7 +62,7 @@ let rec plus (xs1, xs2) =
 //let a = 1
 
 
-// 40.2.5. Напишите функцию minus: int list * int list -> int list, которая возвращает список, содержащий элементы первого списка за исключением элементов второго списка (элементы, одинаковые по значению, считаются разными).
+// 40.2.5.
 let rec minus (xs1, xs2) =
     match (xs1, xs2) with
     | (head1 :: tail1, head2 :: _) when head1 < head2 -> [ head1 ] @ minus (tail1, xs2)
@@ -77,7 +77,7 @@ let rec minus (xs1, xs2) =
 //let result = minus ([1;2;3],[1;2;4;5])
 //let a = 1
 
-// 40.3.1. Напишите функцию smallest: int list -> int option, которая возвращает наименьший элемент непустого списка.
+// 40.3.1.
 let rec iterator (xs, min) =
         match xs with
         | head::tail when head > min  -> iterator(tail,min)
@@ -103,7 +103,7 @@ let rec delete (n, xs) =
 //let result = delete (11,[1;2;3;3;3;3;4;5;6;7;1;0])
 //let a = 1
 
-// 40.3.3. Напишите функцию сортировки с использованием предыдущих функций, которая сортирует входной список так, что на выходе получается слабо восходящий список.
+// 40.3.3.
 let rec sort = fun xs ->
     let rec iteratorSort (list: 'b list) result =
         if(list.Length=0) then result
@@ -117,11 +117,13 @@ let rec sort = fun xs ->
 //let result = sort ([1;2;3;4;5;6;7;1;0])
 //let a = 1
 
-// 40.4. Напишите функцию revrev, которая получает на вход список списков, и перевёртывает как порядок вложенных списков, так и порядок элементов внутри каждого вложенного списка.
-let rec revrev = fun xs ->
-  let rec iter lst acc =
-    let head :: tail = lst
-    if(tail.Length = 0) then (List.rev head)::acc
-    else iter tail ((List.rev head)::acc)
 
-  iter xs []
+// 40.4.
+let rec revrev = fun (xs: list<list<int>>) ->
+   match xs with
+   | [] -> []
+   | [ x ] -> [ List.rev x ]
+   | head :: tail -> revrev tail @ [ List.rev head ]
+
+//let result = revrev ([[1;2];[3;4]])
+//let a = 1
