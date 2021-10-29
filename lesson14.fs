@@ -82,8 +82,8 @@ let rec iterator (xs, min) =
         match xs with
         | head::tail when head > min  -> iterator(tail,min)
         | head::tail when head <= min  -> iterator(tail,head)
-        | [  ] -> min
-        | _ -> min
+        | [  ] -> Some min
+        | _ -> Some min
 
 let rec smallest = fun xs ->
     let head :: tail = xs
