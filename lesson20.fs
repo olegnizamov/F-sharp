@@ -1,12 +1,14 @@
 // 49.5.1
-let even_seq = Seq.initInfinite (fun i -> 2*i)
+let even_seq = Seq.initInfinite (fun i -> 2*i+2)
 //printfn "%d" (Seq.nth 5 even_seq)
 
 
 // 49.5.2
-let rec factorial = function
- | 1  -> 1
- | n  -> n * factorial(n - 1)
+let factorial n =
+    let rec f x a =
+        if x <= 1 then a
+        else f (x - 1) (a * x)
+    f n 1
 
 let fac_seq = Seq.initInfinite factorial
 //printfn "%d" (Seq.nth 10 fac_seq)
